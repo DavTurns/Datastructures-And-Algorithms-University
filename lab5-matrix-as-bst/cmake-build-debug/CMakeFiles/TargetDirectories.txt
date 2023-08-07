@@ -1,0 +1,3 @@
+C:/Users/Latitude/Desktop/Desk/UBB/Lernzeugs/semester 2/Abstrakte Datentypen und Algorithmen/labor/lab5/cmake-build-debug/CMakeFiles/lab5.dir
+C:/Users/Latitude/Desktop/Desk/UBB/Lernzeugs/semester 2/Abstrakte Datentypen und Algorithmen/labor/lab5/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Latitude/Desktop/Desk/UBB/Lernzeugs/semester 2/Abstrakte Datentypen und Algorithmen/labor/lab5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
