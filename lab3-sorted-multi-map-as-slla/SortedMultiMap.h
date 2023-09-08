@@ -14,18 +14,17 @@ class SMMIterator;
 typedef bool(*Relation)(TKey, TKey);
 
 
+
 class SortedMultiMap {
 	friend class SMMIterator;
     private:
-		//TODO - Representation
-        Relation ordnungsrelation;
-
-        TElem* elems;
-        int* next;
-
-        int head;
-        int firstEmpty;
-        int capacity;
+    int* next;
+    int head;
+    int capacity;
+    TElem *elems;
+    Relation relation;
+    int firstEmpty;
+    int nrElems;
 
     public:
 
@@ -53,4 +52,6 @@ class SortedMultiMap {
 
     // destructor
     ~SortedMultiMap();
+
+    vector<pair<TKey, int>> key_count();
 };

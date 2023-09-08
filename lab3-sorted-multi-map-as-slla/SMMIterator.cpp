@@ -1,26 +1,34 @@
 #include "SMMIterator.h"
 #include "SortedMultiMap.h"
-
+//0(n)
 SMMIterator::SMMIterator(const SortedMultiMap& d) : map(d){
-	//TODO - Implementation
+    this->index = map.head;
 }
 
+//0(1)
 void SMMIterator::first(){
-	//TODO - Implementation
+	this->index = map.head;
 }
-
+//0(1)
 void SMMIterator::next(){
-	//TODO - Implementation
+    if (!valid()){
+        throw exception();
+    }
+    this->index = map.next[index];
 }
-
+//0(1)
 bool SMMIterator::valid() const{
-	//TODO - Implementation
-	return false;
+	if(this->index == -1){
+        return false;
+    }
+	return true;
 }
-
+//0(1)
 TElem SMMIterator::getCurrent() const{
-	//TODO - Implementation
-	return NULL_TELEM;
+	if(valid()){
+        return map.elems[index];
+    }
+    throw exception();
 }
 
 

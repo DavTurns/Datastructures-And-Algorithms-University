@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = "C:\APPs\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Latitude\Desktop\matrix_zirkular -BC:\Users\Latitude\Desktop\matrix_zirkular\cmake-build-debug
+  command = "C:\APPs\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\Latitude\Desktop\github_repositories\Datastructures-And-Algorithms-University\extra-matrix-as-circular-list -BC:\Users\Latitude\Desktop\github_repositories\Datastructures-And-Algorithms-University\extra-matrix-as-circular-list\cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

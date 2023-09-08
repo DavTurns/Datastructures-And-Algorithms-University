@@ -1,3 +1,3 @@
-C:/Users/Latitude/Desktop/matrix_zirkular/cmake-build-debug/CMakeFiles/matrix_zirkular.dir
-C:/Users/Latitude/Desktop/matrix_zirkular/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Latitude/Desktop/matrix_zirkular/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Latitude/Desktop/github_repositories/Datastructures-And-Algorithms-University/extra-matrix-as-circular-list/cmake-build-debug/CMakeFiles/matrix_zirkular.dir
+C:/Users/Latitude/Desktop/github_repositories/Datastructures-And-Algorithms-University/extra-matrix-as-circular-list/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Latitude/Desktop/github_repositories/Datastructures-And-Algorithms-University/extra-matrix-as-circular-list/cmake-build-debug/CMakeFiles/rebuild_cache.dir
