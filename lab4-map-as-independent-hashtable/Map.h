@@ -7,7 +7,7 @@
 //DO NOT CHANGE THIS PART
 typedef int TKey;
 typedef int TValue;
-typedef std::pair<TKey, TValue> TElem;
+typedef std::pair <TKey, TValue> TElem;
 #define NULL_TVALUE -111111
 #define NULL_TELEM pair<TKey, TValue>(-111111, -111111)
 

@@ -4,21 +4,24 @@
 //DO NOT CHANGE THIS PART
 #include <vector>
 #include <utility>
+
 typedef int TKey;
 typedef int TValue;
-typedef std::pair<TKey, TValue> TElem;
+typedef std::pair <TKey, TValue> TElem;
 #define NULL_TVALUE -111111
 #define NULL_TELEM pair<TKey, TValue>(-111111, -111111);
 using namespace std;
+
 class SMMIterator;
+
 typedef bool(*Relation)(TKey, TKey);
 
 
-
 class SortedMultiMap {
-	friend class SMMIterator;
-    private:
-    int* next;
+    friend class SMMIterator;
+
+private:
+    int *next;
     int head;
     int capacity;
     TElem *elems;
@@ -26,19 +29,19 @@ class SortedMultiMap {
     int firstEmpty;
     int nrElems;
 
-    public:
+public:
 
     // constructor
     SortedMultiMap(Relation r);
 
-	//adds a new key value pair to the sorted multi map
+    //adds a new key value pair to the sorted multi map
     void add(TKey c, TValue v);
 
-	//returns the values belonging to a given key
-    vector<TValue> search(TKey c) const;
+    //returns the values belonging to a given key
+    vector <TValue> search(TKey c) const;
 
-	//removes a key value pair from the sorted multimap
-	//returns true if the pair was removed (it was part of the multimap), false if nothing is removed
+    //removes a key value pair from the sorted multimap
+    //returns true if the pair was removed (it was part of the multimap), false if nothing is removed
     bool remove(TKey c, TValue v);
 
     //returns the number of key-value pairs from the sorted multimap
@@ -53,5 +56,5 @@ class SortedMultiMap {
     // destructor
     ~SortedMultiMap();
 
-    vector<pair<TKey, int>> key_count();
+    vector <pair<TKey, int>> key_count();
 };

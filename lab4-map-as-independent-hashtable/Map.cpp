@@ -27,10 +27,10 @@ int Map::nextprimenumber(int number) {
 
 //general 0(n)
 Map::~Map() {
-    for(int i = 0; i<capacity; i++){
-        Node* currentNode = array[i];
-        Node* nextNode = nullptr;
-        while(currentNode!= nullptr){
+    for (int i = 0; i < capacity; i++) {
+        Node *currentNode = array[i];
+        Node *nextNode = nullptr;
+        while (currentNode != nullptr) {
             nextNode = currentNode->next;
             delete currentNode;
             currentNode = nextNode;
@@ -57,7 +57,7 @@ TValue Map::add(TKey c, TValue v) {
         Node *nextNode;
         int newindex;
 
-        //durchlaufe den alten array und kopiere jedes TElem in das neue array
+        //iterate through old array and copy every element to new array
         for (int i = 0; i < oldcapacity; i++) {
             if (array[i] != nullptr) {
                 currentNode = array[i];
@@ -79,10 +79,11 @@ TValue Map::add(TKey c, TValue v) {
     //add element
     int position = hashfunction(c, capacity);
 
-    //durchlaufe die SLL and position und ersetze TValue wenn TKey schon vorhanden,
-    Node* currentNode = array[position];
-    while(currentNode != nullptr){
-        if(currentNode->info.first == c){
+    //iterate through the SLL and position and replace TValue if TKey already exists
+
+    Node *currentNode = array[position];
+    while (currentNode != nullptr) {
+        if (currentNode->info.first == c) {
             TValue oldvalue = currentNode->info.second;
             currentNode->info.second = v;
             return oldvalue;
@@ -90,7 +91,7 @@ TValue Map::add(TKey c, TValue v) {
         currentNode = currentNode->next;
     }
 
-    Node* newNode = new Node;
+    Node *newNode = new Node;
     newNode->info.first = c;
     newNode->info.second = v;
 
@@ -130,11 +131,11 @@ TValue Map::remove(TKey c) {
     Node *PreviousNode = nullptr;
     Node *CurrentNode = array[position];
 
-    //wenn kein Node auf der Position exsistiert
-    if(array[position] == nullptr) return NULL_TVALUE;
+    //if no node exists on position
+    if (array[position] == nullptr) return NULL_TVALUE;
 
-    //wenn Node am Anfang steht können wir nicht mit PreviousNode arbeiten
-    if(array[position]->info.first == c){
+    //if node is at the beginning we cant work with PreviousNode
+    if (array[position]->info.first == c) {
         TValue deletedvalue = array[position]->info.second;
         CurrentNode = array[position];
         array[position] = array[position]->next;
@@ -153,7 +154,7 @@ TValue Map::remove(TKey c) {
         CurrentNode = CurrentNode->next;
     }
 
-    //wenn kein schlüssel gefunden wurde
+    //if no key found
     return NULL_TVALUE;
 }
 
@@ -164,7 +165,7 @@ int Map::size() const {
 
 //general:0(1)
 bool Map::isEmpty() const {
-    if(nrElems == 0) return true;
+    if (nrElems == 0) return true;
     return false;
 }
 

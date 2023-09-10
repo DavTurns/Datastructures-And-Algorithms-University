@@ -3,11 +3,11 @@
 #include "ShortTest.h"
 #include "ExtendedTest.h"
 
-int main(){
+int main() {
     testAll();
-	testAllExtended();
+    testAllExtended();
 
 
-    std::cout<<"Finished SMM Tests!"<<std::endl;
-	system("pause");
+    std::cout << "Finished SMM Tests!" << std::endl;
+    system("pause");
 }

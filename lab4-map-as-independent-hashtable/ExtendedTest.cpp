@@ -7,14 +7,14 @@
 
 using namespace std;
 
-void testRemoveCurrent(){
+void testRemoveCurrent() {
 
     cout << "test removeCurrent";
     Map m;
-    m.add(1,1);
-    m.add(6,2);
-    m.add(2,1);
-    m.add(7,2);
+    m.add(1, 1);
+    m.add(6, 2);
+    m.add(2, 1);
+    m.add(7, 2);
     MapIterator mi = m.iterator();
     TElem e;
     e = mi.getCurrent();

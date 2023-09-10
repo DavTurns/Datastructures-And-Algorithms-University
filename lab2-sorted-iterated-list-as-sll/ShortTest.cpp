@@ -4,21 +4,21 @@
 #include "ListIterator.h"
 
 #include <exception>
+
 using namespace std;
 
 bool relation1(TComp e1, TComp e2) {
-	if (e1 <= e2) {
-		return true;
-	}
-	else {
-		return false;
-	}
+    if (e1 <= e2) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-void testAll(){
-	SortedIteratedList list = SortedIteratedList(relation1);
-	assert(list.size() == 0);
-	assert(list.isEmpty());
+void testAll() {
+    SortedIteratedList list = SortedIteratedList(relation1);
+    assert(list.size() == 0);
+    assert(list.isEmpty());
     list.add(1);
     assert(list.size() == 1);
     assert(!list.isEmpty());

@@ -3,26 +3,32 @@
 //
 
 #pragma once
+
 #include "Matrix.h"
 
 class MatrixIterator {
     friend class Matrix;
-private:
-    const Matrix& matrix;
 
-    MatrixIterator(const Matrix& m);
+private:
+    const Matrix &matrix;
+
+    MatrixIterator(const Matrix &m);
 
     //TODO - Representation
-    BSTNode* currentNode;
+    BSTNode *currentNode;
     int line;
     int column;
 
 public:
 
     void first();
+
     void next_line();
+
     void next_column();
+
     bool valid() const;
+
     TElem getCurrent() const;
 };
 

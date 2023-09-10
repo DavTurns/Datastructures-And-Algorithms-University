@@ -15,7 +15,7 @@
  * average: 0(logn)
  * general: O(n)
  * */
-MatrixIterator::MatrixIterator(const Matrix &m) : matrix(m){
+MatrixIterator::MatrixIterator(const Matrix &m) : matrix(m) {
     first();
 }
 
@@ -31,10 +31,10 @@ MatrixIterator::MatrixIterator(const Matrix &m) : matrix(m){
 void MatrixIterator::first() {
     line = 0;
     column = 0;
-    BSTNode* tempnode = matrix.root;
+    BSTNode *tempnode = matrix.root;
 
-    while(tempnode != nullptr){
-        if(get<0>(tempnode->info) == 0 and get<1>(tempnode->info) == 0){
+    while (tempnode != nullptr) {
+        if (get<0>(tempnode->info) == 0 and get<1>(tempnode->info) == 0) {
             break;
         }
         tempnode = tempnode->left;
@@ -51,8 +51,8 @@ void MatrixIterator::first() {
  * average: 0(logn)
  * general: O(n)
  * */
-void MatrixIterator::next_line(){
-    if(!valid()) throw std::exception();
+void MatrixIterator::next_line() {
+    if (!valid()) throw std::exception();
 
     line++;
 
@@ -92,8 +92,8 @@ void MatrixIterator::next_line(){
  * average: 0(logn)
  * general: O(n)
  * */
-void MatrixIterator::next_column(){
-    if(!valid()) throw std::exception();
+void MatrixIterator::next_column() {
+    if (!valid()) throw std::exception();
 
     column++;
 
@@ -128,8 +128,8 @@ void MatrixIterator::next_column(){
 //general: 0(1)
 //pre i E I ist ein iterator
 // post returns true, falls i valid, sonst false
-bool MatrixIterator::valid() const{
-    if(column >= matrix.nrOfCols or line >= matrix.nrOfLines) return false;
+bool MatrixIterator::valid() const {
+    if (column >= matrix.nrOfCols or line >= matrix.nrOfLines) return false;
     else return true;
 }
 
@@ -137,7 +137,7 @@ bool MatrixIterator::valid() const{
 //pre: i E I, m E M
 //post: i E I ,returns e wobei TElem ist, das auf aktuelle Element(l,c)  wiedergibt
 TElem MatrixIterator::getCurrent() const {
-    if(!valid()) throw std::exception();
-    if(currentNode == nullptr) return 0;
+    if (!valid()) throw std::exception();
+    if (currentNode == nullptr) return 0;
     return get<2>(currentNode->info);
 }

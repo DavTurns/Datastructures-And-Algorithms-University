@@ -65,7 +65,7 @@ TElem MapIterator::getCurrent() {
 //general:0(1)
 bool MapIterator::valid() const {
     //TODO - Implementation
-    if (currentindex<map.capacity) return true;
+    if (currentindex < map.capacity) return true;
     return false;
 }
 
@@ -115,16 +115,16 @@ void MapIterator::removeCurrent() {
     if (!valid()) throw exception();
     TKey key = getCurrent().first;
 
-    Node* currentNode = map.array[currentindex];
-    Node* previousNode = nullptr;
-    while(currentNode->info.first!=key){
+    Node *currentNode = map.array[currentindex];
+    Node *previousNode = nullptr;
+    while (currentNode->info.first != key) {
         previousNode = currentNode;
         currentNode = currentNode->next;
     }
 
 
     //wenn currentNode am Anfang steht
-    if(previousNode == nullptr){
+    if (previousNode == nullptr) {
         map.array[currentindex] = currentNode->next;
         next();
         delete currentNode;

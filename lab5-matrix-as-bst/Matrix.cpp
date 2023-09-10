@@ -74,7 +74,7 @@ TElem Matrix::modify(int i, int j, TElem e) {
     //check if i and j are valid
     if (i >= nrOfLines || j >= nrOfCols || i < 0 || j < 0) throw exception();
 
-    //partikularfall wenn noch kein element in der matrix ist
+    //EXTRACASE: if no element stored in matrix
     if(root == nullptr){
         BSTNode *newNode = new BSTNode();
         get<0>(newNode->info) = i;
@@ -87,14 +87,14 @@ TElem Matrix::modify(int i, int j, TElem e) {
         return NULL_TELEM;
     }
 
-    //erstelle vergleichsobject
+    //init comparison object
     tuple<int, int, TElem> searchedpos = {i, j, 0};
     BSTNode *previousNode = nullptr;
     BSTNode *currentNode = root;
     int r;
     int previous_r;
 
-    //durchlaufe den Baum
+    //go through bst
     while (currentNode != nullptr) {
         previous_r = r;
         r = relation(searchedpos, currentNode->info);
@@ -109,9 +109,10 @@ TElem Matrix::modify(int i, int j, TElem e) {
         }
         if (r == 0) {
 
-            //wenn deleted wird
+            //if mode is delete
             if(e == 0){
                 TElem oldvalue = get<2>(currentNode->info);
+
                 //deleting Node by switching with the following node
                 BSTNode *foundNode = currentNode;
 
@@ -152,8 +153,8 @@ TElem Matrix::modify(int i, int j, TElem e) {
     }
 
     //if position not found
-
     if(e == 0) return NULL_TELEM;
+
     //creating new node
     BSTNode *newNode = new BSTNode();
     get<0>(newNode->info) = i;
@@ -179,7 +180,7 @@ void Matrix::deleteNode(BSTNode *Node) {
     deleteNode(Node->left);
     delete Node;
 }
-//TODO!!!!!!!
+
 //general 0(n)
 Matrix::~Matrix() {
     deleteNode(root);

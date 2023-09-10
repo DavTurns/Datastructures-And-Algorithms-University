@@ -1,5 +1,6 @@
 #include "Matrix.h"
 #include <exception>
+
 using namespace std;
 
 
@@ -12,11 +13,11 @@ Matrix::Matrix(int nrLines, int nrCols) {
     head->line = -1;
     head->column = -1;
 
-    CLLNode* prevNode = head;
-    CLLNode* newNode;
+    CLLNode *prevNode = head;
+    CLLNode *newNode;
 
     //init all columnheadernodes
-    for(int i = 0; i<nrOfColumns;i++){
+    for (int i = 0; i < nrOfColumns; i++) {
 
         //new Node init
         newNode = new CLLNode;
@@ -30,14 +31,14 @@ Matrix::Matrix(int nrLines, int nrCols) {
         prevNode = newNode;
 
         //if newNode is the last headernode
-        if(i == nrCols-1){
+        if (i == nrCols - 1) {
             newNode->nextColumn = head;
         }
     }
 
     //init all lineheadernodes
     prevNode = head;
-    for(int i = 0; i<nrOfLines;i++){
+    for (int i = 0; i < nrOfLines; i++) {
 
         //new Node init
         newNode = new CLLNode;
@@ -51,7 +52,7 @@ Matrix::Matrix(int nrLines, int nrCols) {
         prevNode = newNode;
 
         //if newNode is the last headernode
-        if(i == nrOfLines-1){
+        if (i == nrOfLines - 1) {
             newNode->nextLine = head;
         }
     }
@@ -59,29 +60,29 @@ Matrix::Matrix(int nrLines, int nrCols) {
 
 
 int Matrix::nrLines() const {
-	return nrOfLines;
+    return nrOfLines;
 }
 
 
 int Matrix::nrColumns() const {
-	return nrOfColumns;
+    return nrOfColumns;
 }
 
 
 TElem Matrix::element(int i, int j) const {
 
     //check if searched position is valid
-    if(i >=nrOfLines or j >=nrOfColumns or i < 0 or j < 0){
+    if (i >= nrOfLines or j >= nrOfColumns or i < 0 or j < 0) {
         throw exception();
     }
-	CLLNode* currentNode = head;
+    CLLNode *currentNode = head;
 
-    while(currentNode->column != j) currentNode = currentNode->nextColumn;
-    while(currentNode->line != i){
+    while (currentNode->column != j) currentNode = currentNode->nextColumn;
+    while (currentNode->line != i) {
         currentNode = currentNode->nextLine;
 
         //if not found, -1 means -> Node is headernode
-        if(currentNode->line > i or currentNode->line == -1){
+        if (currentNode->line > i or currentNode->line == -1) {
             return NULL_TELEM;
         }
     }
@@ -91,29 +92,29 @@ TElem Matrix::element(int i, int j) const {
 TElem Matrix::modify(int i, int j, TElem e) {
 
     //check if searched position is valid
-    if(i >=nrOfLines or j >=nrOfColumns or i < 0 or j < 0){
+    if (i >= nrOfLines or j >= nrOfColumns or i < 0 or j < 0) {
         throw exception();
     }
 
     //starting from head
-    CLLNode* currentNode = head;
-    CLLNode* prevNode;
-    CLLNode* deletedNode;
+    CLLNode *currentNode = head;
+    CLLNode *prevNode;
+    CLLNode *deletedNode;
 
     //travel to column
-    while(currentNode->column != j) currentNode = currentNode->nextColumn;
+    while (currentNode->column != j) currentNode = currentNode->nextColumn;
 
     //travel to line
-    while(currentNode->line != i){
+    while (currentNode->line != i) {
         prevNode = currentNode;
         currentNode = currentNode->nextLine;
 
         //if Node with line found
-        if(currentNode->line == i){
+        if (currentNode->line == i) {
             TElem prevValue = currentNode->info;
 
             //if Node has to be deleted
-            if(e == 0){
+            if (e == 0) {
                 //save Node adress
                 deletedNode = currentNode;
 
@@ -122,10 +123,10 @@ TElem Matrix::modify(int i, int j, TElem e) {
                 currentNode = head;
                 int k;
                 //travel to Line
-                for(k = 0; k<=i; k++) currentNode = currentNode->nextLine;
+                for (k = 0; k <= i; k++) currentNode = currentNode->nextLine;
 
                 //travel to column
-                while(currentNode!=deletedNode){
+                while (currentNode != deletedNode) {
                     prevNode = currentNode;
                     currentNode = currentNode->nextColumn;
                 }
@@ -137,11 +138,11 @@ TElem Matrix::modify(int i, int j, TElem e) {
         }
 
         //if not found
-        if(currentNode->line > i or currentNode->line == -1){
+        if (currentNode->line > i or currentNode->line == -1) {
 
-            if(e == 0) return NULL_TELEM;
+            if (e == 0) return NULL_TELEM;
 
-            CLLNode* newNode = new CLLNode;
+            CLLNode *newNode = new CLLNode;
             newNode->info = e;
             newNode->line = i;
             newNode->column = j;
@@ -150,10 +151,10 @@ TElem Matrix::modify(int i, int j, TElem e) {
             prevNode->nextLine = newNode;
 
             currentNode = head;
-            while(currentNode->line != i) currentNode = currentNode->nextLine;
+            while (currentNode->line != i) currentNode = currentNode->nextLine;
 
             //if this is the first added node in this line
-            if(currentNode->nextColumn == currentNode){
+            if (currentNode->nextColumn == currentNode) {
                 currentNode->nextColumn = newNode;
                 newNode->nextColumn = currentNode;
                 return NULL_TELEM;
@@ -161,7 +162,7 @@ TElem Matrix::modify(int i, int j, TElem e) {
             prevNode = currentNode;
             currentNode = currentNode->nextColumn;
 
-            while(currentNode->column < j and currentNode->column != -1){
+            while (currentNode->column < j and currentNode->column != -1) {
                 prevNode = currentNode;
                 currentNode = currentNode->nextColumn;
             }
@@ -173,20 +174,20 @@ TElem Matrix::modify(int i, int j, TElem e) {
     //if already exists an entry
     TElem lastelem = currentNode->info;
     currentNode->info = e;
-	return lastelem;
+    return lastelem;
 }
 
 Matrix::~Matrix() {
-    CLLNode* currentColumnHeader = head;
-    CLLNode* currentNode;
-    CLLNode* deletedNode;
+    CLLNode *currentColumnHeader = head;
+    CLLNode *currentNode;
+    CLLNode *deletedNode;
 
     //for everycolumnheader, delete its column
-    for(int i = 0; i<= nrOfColumns; i++){
+    for (int i = 0; i <= nrOfColumns; i++) {
         currentNode = currentColumnHeader;
         currentNode = currentNode->nextLine;
 
-        while(currentNode!=currentColumnHeader){
+        while (currentNode != currentColumnHeader) {
             deletedNode = currentNode;
             currentNode = currentNode->nextLine;
             delete deletedNode;

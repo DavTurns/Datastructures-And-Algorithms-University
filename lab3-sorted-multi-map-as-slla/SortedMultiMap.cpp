@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <exception>
+
 using namespace std;
 //ADT SortedMultiMap – repräsentiert mithilfe einer SLLA von Paaren der Form (key, value)
 // und sortiert mithilfe einer Relation auf den Schlüsseln (key). Ein Schlüssel kann mehrmals vorkommen.
@@ -10,14 +11,14 @@ using namespace std;
 
 //Komplexitat: 0(n)
 SortedMultiMap::SortedMultiMap(Relation r) {
-	this->capacity = 4;
+    this->capacity = 4;
     this->elems = new TElem[capacity];
     this->next = new int[capacity];
     this->head = -1;
-    for(int i=0; i<this->capacity-1; i++){
-        this->next[i] = i+1;
+    for (int i = 0; i < this->capacity - 1; i++) {
+        this->next[i] = i + 1;
     }
-    this->next[capacity-1] = -1;
+    this->next[capacity - 1] = -1;
     this->firstEmpty = 0;
     this->nrElems = 0;
     this->relation = r;
@@ -30,11 +31,11 @@ SortedMultiMap::SortedMultiMap(Relation r) {
 //Allgemein: O(n)
 void SortedMultiMap::add(TKey c, TValue v) {
     //resize
-    if(firstEmpty==-1){
-        capacity=capacity*2;
+    if (firstEmpty == -1) {
+        capacity = capacity * 2;
         TElem *newElems = new TElem[capacity];
         int *newNext = new int[capacity];
-        for(int i = 0; i < nrElems; i++){
+        for (int i = 0; i < nrElems; i++) {
             newElems[i] = elems[i];
             newNext[i] = next[i];
         }
@@ -42,25 +43,24 @@ void SortedMultiMap::add(TKey c, TValue v) {
         delete[] next;
         next = newNext;
         elems = newElems;
-        //markieren alle freien Stellen
+        //mark every free memory slot
         firstEmpty = nrElems;
-        for(int i=nrElems; i<this->capacity-1; i++){
-            this->next[i] = i+1;
+        for (int i = nrElems; i < this->capacity - 1; i++) {
+            this->next[i] = i + 1;
         }
-        next[capacity-1] = -1;
+        next[capacity - 1] = -1;
     }
     int indexNew = firstEmpty;
     elems[indexNew].first = c;
     elems[indexNew].second = v;
-    //wenn kein elem hinzugefugt wurde
+    //if no element has been added
 
-    if(head==-1){
+    if (head == -1) {
         head = firstEmpty;
         firstEmpty = next[firstEmpty];
         next[indexNew] = -1;
 
-    }
-    else {
+    } else {
         //wir ändern nur index
         int indexCurrent = head;
         int indexPrevious = -1;
@@ -86,15 +86,16 @@ void SortedMultiMap::add(TKey c, TValue v) {
     nrElems++;
 
 }
+
 //Best: 0(1)
 //Worst: 0(n)
 //Durschschnitt & allgemein: O(n)
-vector<TValue> SortedMultiMap::search(TKey c) const {
+vector <TValue> SortedMultiMap::search(TKey c) const {
 
-    vector<TValue> values;
+    vector <TValue> values;
     int current = head;
-    while(current != -1){
-        if(elems[current].first == c){
+    while (current != -1) {
+        if (elems[current].first == c) {
             values.push_back(elems[current].second);
         }
         current = next[current];
@@ -111,15 +112,14 @@ bool SortedMultiMap::remove(TKey c, TValue v) {
     int current = head;
     int previous = -1;
 
-    while(current!=-1 and (this->elems[current].first != c or this->elems[current].second !=v)){
+    while (current != -1 and (this->elems[current].first != c or this->elems[current].second != v)) {
         previous = current;
         current = next[current];
     }
-    if (current!=-1){
-        if(current == head){
+    if (current != -1) {
+        if (current == head) {
             this->head = next[head];
-        }
-        else{
+        } else {
             next[previous] = next[current];
         }
         next[current] = this->firstEmpty;
@@ -132,20 +132,22 @@ bool SortedMultiMap::remove(TKey c, TValue v) {
 
 //Komplexity: 0(1)
 int SortedMultiMap::size() const {
-	return nrElems;
+    return nrElems;
 }
+
 //Komplexity: 0(1)
 bool SortedMultiMap::isEmpty() const {
-    if(head==-1) return true;
-	return false;
+    if (head == -1) return true;
+    return false;
 }
 
 SMMIterator SortedMultiMap::iterator() const {
-	return SMMIterator(*this);
+    return SMMIterator(*this);
 }
+
 //Komplexity: 0(1)
 SortedMultiMap::~SortedMultiMap() {
-	delete[] elems;
+    delete[] elems;
     delete[] next;
 }
 //Best:0(n)
@@ -175,21 +177,21 @@ SortedMultiMap::~SortedMultiMap() {
  * end-While
  * return keys
  */
-vector<pair<TKey, int>> SortedMultiMap::key_count(){
-    vector<pair<TKey , int>> keys;
+vector <pair<TKey, int>> SortedMultiMap::key_count() {
+    vector <pair<TKey, int>> keys;
     bool found;
     TKey currentKey = elems[head].first;
     int currentIndex = head;
-    while(currentIndex!=-1){
+    while (currentIndex != -1) {
         found = false;
-        for(int i =0; i<keys.size(); i++){
-            if(keys[i].first == currentKey){
+        for (int i = 0; i < keys.size(); i++) {
+            if (keys[i].first == currentKey) {
                 found = true;
                 keys[i].second++;
             }
         }
-        if(!found){
-            pair<TKey,int> newpair;
+        if (!found) {
+            pair<TKey, int> newpair;
             newpair.first = currentKey;
             newpair.second = 1;
             keys.push_back(newpair);
